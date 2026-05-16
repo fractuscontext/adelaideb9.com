@@ -56,15 +56,14 @@ const combinedEvents = computed(() => {
         come join us! We'd love to have you.<br/><br/>
       </p>
 
-
       <div class="flex flex-row flex-wrap items-center justify-start gap-4 max-w-fit">
         <SocialMedia
           src="/img/social/discord-brands.svg"
           href="https://discord.gg/M3x2Bkbb3N"
           :join="true"
-          class="h-[50px] flex items-center" 
+          class="h-[50px] flex items-center"
         />
-        
+          
         <router-link class="no-underline text-s" to="/register">
           <div class="flex items-center justify-center backdrop-filter bg-black/10 rounded-md h-[50px] px-10 hover:brightness-95 transition-all">
             <p class="font-medium tracking-tighter text-center m-0 flex items-center gap-2 text-nowrap">
@@ -78,23 +77,27 @@ const combinedEvents = computed(() => {
     <img src="/img/logo.png" class="w-96" />
     <br/>
   </div>
-<div v-if="combinedEvents.length >= 1 && loaded" class="py-20 -mt-20 flex content-center justify-center items-center gap-12 flex-col-reverse lg:flex-row">
-    <div class="space-y-5 text-lg">
-      <h1 class="text-center" >Upcoming Events</h1>
-      <div v-if="combinedEvents.length >= 1 && loaded" class="flex flex-col gap-6">
-        
-        <!-- FIX: use 'flex flex-col gap-4' to separate individual cards -->
-        <div class="flex flex-col gap-4">
-          <TicketSmall
-            v-for="v of combinedEvents"
-            :key="v.ID"
-            :details="v"
-          />
-        </div>
-        <div class="w-full">
-          <a class="text-center block cursor-pointer block rounded-2xl border-solid border-black/5 border-2 bg-white/25 no-underline shrink py-4 px-12 m-auto w-max" href="/events">See all <span v-if="upcomingNumber > 3" class="text-sm opacity-75">[{{ upcomingNumber }}]</span></a>
-        </div>
+
+  <div v-if="combinedEvents.length >= 1 && loaded" class="py-20 flex justify-center">
+    <div class="mx-10 lg:mx-0 w-full lg:w-[calc(34rem+384px+3rem)]">
+      <h2 class="text-center mb-6">Upcoming Events</h2>
+      <div class="flex flex-col gap-4">
+        <TicketSmall
+          v-for="v of combinedEvents"
+          :key="v.ID"
+          :details="v"
+        />
       </div>
+      <div class="w-full mt-6">
+        <a
+          class="text-center block cursor-pointer rounded-2xl border-solid border-black/5 border-2 bg-white/25 no-underline py-4 px-12 m-auto w-max"
+          href="/events"
+        >
+          See all
+          <span v-if="upcomingNumber > 3" class="text-sm opacity-75">[{{ upcomingNumber }}]</span>
+        </a>
+      </div>
+
       <!-- div v-if="combinedEvents.length < 1 || loaded">
         <Ticket
           :key="combinedEvents[0].ID"
@@ -102,6 +105,7 @@ const combinedEvents = computed(() => {
         />
         <a class="mt-8 text-center block cursor-pointer" href="/events">See all</a>
       </div -->
+
     </div>
   </div>
 </div>
